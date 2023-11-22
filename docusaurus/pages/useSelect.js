@@ -38,14 +38,7 @@ export default function DropdownSelect() {
     }
   })
 
-  const [_reference, _setReference] = React.useState(null)
-
-  const setReference = React.useCallback(
-    node => {
-      _setReference(node)
-    },
-    [_setReference],
-  )
+  const [reference, setReference] = React.useState(null)
 
   return (
     <div style={containerStyles}>
@@ -54,7 +47,7 @@ export default function DropdownSelect() {
           fontWeight: 'bolder',
           color: selectedItem ? selectedItem : 'black',
         }}
-        {...getLabelProps({ref: setReference})}
+        {...getLabelProps()}
       >
         Choose an element:
       </label>
@@ -66,7 +59,7 @@ export default function DropdownSelect() {
           backgroundColor: 'lightgray',
           cursor: 'pointer',
         }}
-        {...getToggleButtonProps()}
+        {...getToggleButtonProps({ref: setReference})}
       >
         {selectedItem ? selectedItem.value : 'Elements'}
         {isOpen ? <>&#8593;</> : <>&#8595;</>}
